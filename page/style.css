@@ -1,0 +1,237 @@
+/*base set*/
+
+html{
+    overflow: hidden;
+}
+body{
+    margin:0;
+}
+.page{
+    width: 100%;
+    padding-top: 200px;
+    bottom: 0;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+.page h1{
+    font-size: 60px;
+}
+.page a{
+    margin-top: 50px;
+    display: inline-block;
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    background: #000;
+    padding:4px 10px;
+}
+#about{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    color: #333;
+    font-size: 30px;
+    text-align: center;
+}
+/*page*/
+.page-home{
+    background: cadetblue;
+    color: springgreen;
+}
+.page-about{
+    background: antiquewhite;
+    color: #0a628f;
+}
+.page-contact{
+    background:coral;
+    color: #3f4e68;
+}
+/*animation*/
+.page.ng-enter{
+    z-index: 888;
+}
+.page.ng-leave{
+    z-index: 999;
+}
+/*page-home*/
+.page-home.ng-enter{
+    -webkit-animation: scaleUp .2s both ease-in;
+    -moz-animation: scaleUp .2s both ease-in;
+    animation:scaleUp .2s both ease-in;
+}
+.page-home.ng-leave{
+    -webkit-transform-origin: 0% 0%; /*设置旋转元素的基点位置默认是中间*/
+    -moz-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    -webkit-animation: rotateFall .2s both ease-in;
+    -moz-animation: rotateFall .2s both ease-in;
+    animation: rotateFall .2s both ease-in;
+}
+/*过渡效果ease指慢速 ease-in 慢速开始 ease-out慢速结束*/
+
+/*page-about*/
+.page-about.ng-enter{
+    -webkit-animation: slideInRight .2s both ease-in;
+    -moz-animation: slideInRight .2s both ease-in;
+    animation: slideInRight .2s both ease-in;
+}
+.page-about.ng-leave{
+    -webkit-animation:slideOutLeft 0.5s both ease-in;
+    -moz-animation:slideOutLeft 0.5s both ease-in;
+    animation:slideOutLeft 0.5s both ease-in;
+}
+
+/*page-contact*/
+.page-contact.ng-enter{
+    -webkit-animation:slideInUp 0.5s both ease-in;
+    -moz-animation:slideInUp 0.5s both ease-in;
+    animation:slideInUp 0.5s both ease-in;
+}
+.page-contact.ng-leave{
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation: rotateOutNewspaper .2s both ease-in;
+    -moz-animation: rotateOutNewspaper .2s both ease-in;
+    animation: rotateOutNewspaper .2s both ease-in;
+}
+/*向右侧倾斜掉下消失*/
+@-webkit-keyframes rotateFall {
+    0%{
+        -webkit-transform: rotateZ(0deg);
+    }
+    20%{
+        -webkit-transform: rotateZ(10deg);
+        -webkit-animation-timing-function: ease-out;
+    }
+    40%{
+        -webkit-transform: rotateZ(17deg);
+    }
+    60%{
+        -webkit-transform: rotateZ(16deg);
+    }
+    100%{
+        -webkit-transform: translateY(100%) rotateZ(17deg);
+    }
+}
+@-moz-keyframes rotateFall {
+    0%{
+        -moz-transform: rotateZ(0deg);
+    }
+    20%{
+        -moz-transform: rotateZ(10deg);
+        -moz-animation-timing-function: ease-out;
+    }
+    40%{
+        -moz-transform: rotateZ(17deg);
+    }
+    60%{
+        -moz-transform: rotateZ(16deg);
+    }
+    100%{
+        -moz-transform: translateY(100%) rotateZ(17deg);
+    }
+}
+@keyframes rotateFall {
+    0% { transform: rotateZ(0deg); }
+    20% { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+    40% { transform: rotateZ(17deg); }
+    60% { transform: rotateZ(16deg); }
+    100% { transform: translateY(100%) rotateZ(17deg); }
+}
+/*向上扩展*/
+@-webkit-keyframes scaleUp{
+    from{
+        opacity:.3;
+        transform: scale(2.8); /* 缩放*/
+    }
+}
+@-moz-keyframes scaleUp {
+    from{
+        opacity:.3;
+        transform: scale(2.8); /* 缩放*/
+    }
+}
+@keyframes scaleUp {
+    from{
+        opacity:.3;
+        transform: scale(.8); /* 缩放*/
+    }
+}
+/*从右侧进入*/
+@-webkit-keyframes slideInRight {
+    from{
+        -webkit-transform:translateX(100%);
+    }
+    to{
+        -webkit-transform: translateX(0);
+    }
+}
+@-moz-keyframes slideInRight {
+    from{
+        -moz-transform:translateX(100%);
+    }
+    to{
+        -moz-transform: translateX(0);
+    }
+}
+@keyframes slideInRight {
+    from{
+        transform:translateX(100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+/* 从上侧进入 */
+@-webkit-keyframes slideInUp {
+    from{
+        -webkit-transform: translateY(100%);
+    }
+    to{
+        -webkit-transform: translateY(0);
+    }
+}
+@-moz-keyframes slideInUp {
+    from{
+        -moz-transform: translateY(100%);
+    }
+    to{
+        -moz-transform: translateY(0);
+    }
+}
+@keyframes slideInUp {
+    from{
+        transform: translateY(100%);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+/* 左侧离开 */
+@-webkit-keyframes slideOutLeft {
+    to{
+        -webkit-transform: translateX(-100%);
+    }
+}
+@-moz-keyframes slideOutLeft {
+    to{
+        -moz-transform: translateX(-100%);
+    }
+}
+@keyframes slideOutLeft {
+    to{
+        transform: translateX(-100%);
+    }
+}
+/* 顺时针旋转消失 */
+@-webkit-keyframes rotateOutNewspaper {
+    to { -webkit-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+@-moz-keyframes rotateOutNewspaper {
+    to { -moz-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+@keyframes rotateOutNewspaper {
+    to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}

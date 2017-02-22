@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular路由ngRoute</title>
+    <script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/route.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.anim.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+    ul{
+        width: 200px;
+        margin: 0 auto;
+    }
+    ul li{
+        float: left;
+        width: 33.33%;
+        list-style: none;
+        margin-top: 30px;
+    }
+    ul li a{
+        text-decoration:none;
+    }
+    .page1,.page2,.page3{
+        width:400px;
+        height: 400px;
+        line-height:400px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 30px;
+        color: #fff;
+        position: relative;
+    }
+    .page1{
+        background: red;
+    }
+    .page2{
+        background: olive;
+    }
+    .page3{
+        background: blue;
+    }
+     /*右进*/
+    @keyframes slideInRight {
+        from{ transform: translateX(100%)}
+        to  { transform: translateX(0)}
+    }
+    /*360度旋转消失*/
+    @keyframes rotateout {
+        to{
+            transform: translateZ(-3000px) rotate(360deg);
+            opacity:0;
+        }
+    }
+    /*页面进入效果*/
+    .ng-enter{
+        animation : slideInRight .2s ease-in ;
+        z-index:99
+    }
+    /*页面离开效果*/
+    .ng-leave{
+        animation : rotateout .2s ease-in;
+        z-index: 200;
+    }
+</style>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="homepage">
+        <div ng-view></div>  <!--  给$route对应的视图内容占位 -->
+        <ul>
+            <li><a href="#page1">page1</a></li>
+            <li><a href="#page2">page2</a></li>
+            <li><a href="#page3">page3</a></li>
+        </ul>
+    </div>
+    <script>
+        var app = angular.module("myApp",["ngRoute","ngAnimate"]);
+        app.config(['$routeProvider',function($routeProvider){ //配置定义路由
+            $routeProvider
+                    .when("/page1",{templateUrl:"childPage1.html"})
+                    .when("/page2",{templateUrl:"childPage2.html"})
+                    .when("/page3",{templateUrl:"childPage3.html"})
+                    .otherwise({redirectTo:"/page1"});
+        }]);
+        app.controller('myCtrl', function($scope) {
+
+        }).controller('page1Ctrl', function ($scope) {
+            $scope.msg = "page1"
+        }).controller('page2Ctrl', function ($scope) {
+            $scope.msg = "page2"
+        }).controller('page3Ctrl', function ($scope) {
+            $scope.msg = "page3"
+        })
+    </script>
+</body>
+<!--
+   ngRoute 它的实现是对URL进行匹配后去驱动视图页面显示
+   ngRoute 为页面创建路由
+   ngAnimate为页面创建动画效果
+-->
+</html>

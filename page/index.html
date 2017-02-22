@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular路由ngRoute过渡ngAnimate</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="../js/angular.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/route.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.anim.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body ng-app="myApp">
+    <div class="page {{ pageClass }}" ng-view></div>
+    <div id="about">
+        <p> A demo on Angular Animations <br/> ng-view</p>
+    </div>
+</body>
+<script>
+    var app = angular.module('myApp',['ngRoute','ngAnimate']);
+    app.config(function($routeProvider){
+        $routeProvider
+                .when('/',{
+                    templateUrl:'page-home.html',
+                    controller:'homeCon'
+                })
+                .when('/home',{
+                    templateUrl:'page-home.html',
+                    controller:'homeCon'
+                })
+                .when('/about',{
+                    templateUrl:'page-about.html',
+                    controller:'aboutCon'
+                })
+                .when('/contact',{
+                    templateUrl:'page-contact.html',
+                    controller:'contactCon'
+                })
+                .otherwise({redirectTo:"/home"});
+
+    });
+    app.controller('homeCon', function ($scope){
+        $scope.pageClass = 'page-home';
+    }).controller('aboutCon',function($scope){
+        $scope.pageClass = 'page-about';
+    }).controller('contactCon',function($scope){
+        $scope.pageClass = 'page-contact';
+    })
+</script>
+</html>
